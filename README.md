@@ -248,3 +248,54 @@ records, handled missing values, standardized data types,
 
 and created a Revenue field for future analysis.
 
+# SWYNEX - Interactive Dashboard
+
+## Task 3: Interactive Dashboard
+
+This project is part of my SWYNEX internship. For Task 3, I created an interactive sales dashboard using Microsoft Power BI based on the analyzed dataset.
+
+## Dashboard Overview
+
+The dashboard provides a clear overview of sales performance through key performance indicators and interactive visualizations.
+
+### Key KPIs
+
+- Total Revenue
+- Total Quantity
+- Total Orders
+- Total Customers
+
+### Visualizations
+
+- Revenue trend over time
+- Product revenue analysis
+- Total revenue by country
+- Interactive country selection
+- Date-based filtering
+
+## Tools Used
+
+- Microsoft Power BI
+- Excel
+- Data Analysis
+- Data Visualization
+
+## Key Learning
+
+Through this task, I learned how to:
+
+- Build an interactive dashboard in Power BI
+- Create and format KPI cards
+- Build charts to communicate business insights
+- Add filters and interactive selections
+- Analyze revenue and sales performance
+- Present data in a clear and professional way
+
+## Dashboard Screenshot
+
+![SWYNEX Interactive Dashboard](dashboard_screenshot.png)
+
+## Project Files
+
+- `SWYNEX_Interactive_Dashboard.pbix` - Power BI dashboard
+- `dashboard_screenshot.png` - Dashboard screenshot
