@@ -148,8 +148,7 @@ The dashboard allows users to explore sales performance across different dates, 
 
 Add your actual dashboard screenshot to the `screenshots` folder and use the correct filename in the image link below.
 
-![SWYNEX Interactive Power BI Dashboard](screenshots/dashboard_screenshot.png)
-
+![SWYNEX Interactive Power BI Dashboard](Screenshot%20(5).png)
 ### Power BI File
 
 The Power BI report is available in the repository as:
