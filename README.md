@@ -1,301 +1,219 @@
-\# SWYNEX - Data Cleaning \& Preparation
+# SWYNEX – End-to-End Data Analytics Project
 
+## 1. Project Overview
 
+This project was completed as part of my SWYNEX internship and demonstrates a data analytics workflow using the Online Retail transaction dataset.
 
-\## Project Overview
+The project covers data quality assessment, data cleaning, data preparation, sales analysis, and interactive dashboard development using Python, Pandas, and Microsoft Power BI.
 
+The goal is to transform raw retail transaction data into a reliable dataset and present sales performance in a clear, interactive dashboard to support business decision-making.
 
+## 2. Problem Statement
 
-This project focuses on cleaning and preparing a public
+Retail businesses generate large volumes of transaction data, but inaccurate, incomplete, or inconsistent records can affect reporting and business decisions.
 
-Online Retail transaction dataset for further analysis.
+The objective of this project is to identify and resolve data quality issues in an online retail dataset, prepare the data for analysis, and develop an interactive Power BI dashboard to explore revenue, orders, customers, products, and geographical sales performance.
 
+## 3. Dataset Information
 
+- **Dataset:** Online Retail
+- **Source:** UCI Machine Learning Repository
+- **Original records:** 541,909 rows
+- **Original columns:** 8
+- **Final records:** 534,129 rows
+- **Final columns:** 9
 
-The objective was to identify and resolve common data-quality
+The dataset contains online retail transactions with information such as invoice number, product code, product description, quantity, invoice date, unit price, customer ID, and country.
 
-issues including duplicate records, missing values, invalid
+An additional Revenue column was created during data preparation.
 
-values, and data-type inconsistencies.
+## 4. Tools and Technologies
 
+- Python
+- Pandas
+- OpenPyXL
+- Microsoft Excel
+- Microsoft Power BI
+- GitHub
 
+## 5. Data Quality Issues Identified
 
-\## Dataset
+The initial data quality assessment identified the following issues:
 
+- 5,268 duplicate records
+- 1,454 records with missing product descriptions
+- Missing customer IDs
+- Zero or negative unit prices
+- Inconsistent data types
+- Unnecessary whitespace in text fields
 
+## 6. Data Cleaning and Preparation
 
-Dataset: Online Retail
+### Step 1: Duplicate Removal
 
+Identified and removed 5,268 duplicate records to prevent repeated transactions from affecting the analysis.
 
-
-Source:
-
-UCI Machine Learning Repository
-
-
-
-Original Dataset:
-
-\- Rows: 541,909
-
-\- Columns: 8
-
-
-
-\## Tools Used
-
-
-
-\- Python
-
-\- Pandas
-
-\- OpenPyXL
-
-\- Excel
-
-\- GitHub
-
-
-
-\## Data Quality Issues Identified
-
-
-
-The following issues were identified during the initial
-
-data-quality assessment:
-
-
-
-\- 5,268 duplicate records
-
-\- 1,454 missing Description values
-
-\- Missing CustomerID values
-
-\- Invalid UnitPrice values
-
-\- Data-type inconsistencies requiring standardization
-
-
-
-\## Data Cleaning Performed
-
-
-
-\### 1. Duplicate Records
-
-
-
-Removed 5,268 duplicate records.
-
-
-
-\### 2. Missing Description
-
-
+### Step 2: Missing Product Descriptions
 
 Removed 1,454 records where the Description field was missing.
 
+### Step 3: Missing Customer IDs
 
+Replaced missing CustomerID values with "Unknown" so that records without an identified customer could be retained for appropriate analysis.
 
-\### 3. Missing CustomerID
+A total of 133,583 missing CustomerID values were handled after duplicate removal.
 
+### Step 4: Data Type Standardization
 
+- Converted InvoiceDate to datetime format.
+- Converted Quantity to numeric format.
+- Converted UnitPrice to numeric format.
+- Standardized identifier fields as text.
 
-Missing CustomerID values were replaced with `Unknown`.
+### Step 5: Text Standardization
 
+Removed unnecessary whitespace from Description, Country, StockCode, and InvoiceNo fields.
 
-
-A total of 133,583 missing CustomerID values were handled
-
-after duplicate records were removed.
-
-
-
-\### 4. Data Type Standardization
-
-
-
-\- InvoiceDate converted to datetime
-
-\- Quantity converted to numeric
-
-\- UnitPrice converted to numeric
-
-\- Identifier fields standardized as text
-
-
-
-\### 5. Text Standardization
-
-
-
-Whitespace was removed from:
-
-
-
-\- Description
-
-\- Country
-
-\- StockCode
-
-\- InvoiceNo
-
-
-
-\### 6. Invalid UnitPrice
-
-
+### Step 6: Invalid Unit Prices
 
 Removed 1,058 records where UnitPrice was zero or negative.
 
+### Step 7: Quantity Validation
 
+Checked for zero-quantity records; none were found in the assessed dataset.
 
-\### 7. Quantity Validation
+Negative quantities were retained because they can represent returns or cancelled transactions and should be considered appropriately during sales analysis.
 
+### Step 8: Revenue Calculation
 
+Created a Revenue column using the following formula:
 
-Zero-quantity records were checked.
+`Revenue = Quantity × UnitPrice`
 
-No zero-quantity records were found.
+This field supports revenue calculations and product, country, and time-based analysis.
 
+## 7. Final Dataset Summary
 
+| Data quality measure | Result |
+|---|---:|
+| Original rows | 541,909 |
+| Duplicate records removed | 5,268 |
+| Missing-description records removed | 1,454 |
+| Invalid-price records removed | 1,058 |
+| Final rows | 534,129 |
+| Final columns | 9 |
 
-Negative quantities were retained because they can represent
+The final dataset contains no remaining duplicate records or missing values according to the cleaning validation performed. Missing customer IDs were represented as "Unknown".
 
-returns or cancelled transactions.
+The cleaned dataset is prepared for further sales analysis and visualization.
 
+## 8. Exploratory and Business Analysis
 
+The prepared dataset was used to support sales analysis through Microsoft Power BI.
 
-\### 8. Revenue Calculation
+The analysis focuses on:
 
+- Overall revenue performance
+- Total quantity sold
+- Order volume
+- Customer coverage
+- Revenue trends over time
+- Product-level revenue comparisons
+- Country-level revenue comparisons
 
+These views help explore sales patterns, compare performance across categories, and identify areas for further business investigation.
 
-A new Revenue column was created:
+## 9. Interactive Power BI Dashboard
 
+An interactive sales dashboard was developed in Microsoft Power BI.
 
-
-Revenue = Quantity × UnitPrice
-
-
-
-\## Final Dataset
-
-
-
-After cleaning:
-
-
-
-\- Rows: 534,129
-
-\- Columns: 9
-
-\- Missing values: 0
-
-\- Duplicate records: 0
-
-
-
-\## Project Structure
-
-
-
-```text
-
-SWYNEX-data-cleaning-preparation/
-
-│
-
-├── raw\_data/
-
-│   └── Online Retail.xlsx
-
-│
-
-├── cleaned\_data/
-
-│   └── cleaned\_online\_retail.csv
-
-│
-
-├── python/
-
-│   └── data\_cleaning.py
-
-│
-
-├── screenshots/
-
-│
-
-└── README.md
-
-Conclusion
-
-
-
-The raw Online Retail dataset was successfully cleaned and
-
-prepared for further data analysis. The cleaning process
-
-improved data consistency, removed duplicate and invalid
-
-records, handled missing values, standardized data types,
-
-and created a Revenue field for future analysis.
-
-# SWYNEX - Interactive Dashboard
-
-## Task 3: Interactive Dashboard
-
-This project is part of my SWYNEX internship. For Task 3, I created an interactive sales dashboard using Microsoft Power BI based on the analyzed dataset.
-
-## Dashboard Overview
-
-The dashboard provides a clear overview of sales performance through key performance indicators and interactive visualizations.
-
-### Key KPIs
+### Key Performance Indicators
 
 - Total Revenue
 - Total Quantity
 - Total Orders
 - Total Customers
 
-### Visualizations
+### Dashboard Visualizations
 
 - Revenue trend over time
 - Product revenue analysis
-- Total revenue by country
-- Interactive country selection
+- Revenue by country
+- Country selection for interactive exploration
 - Date-based filtering
 
-## Tools Used
+The dashboard allows users to explore sales performance across different dates, products, and countries.
 
-- Microsoft Power BI
-- Excel
-- Data Analysis
-- Data Visualization
+### Dashboard Screenshot
 
-## Key Learning
+Add your actual dashboard screenshot to the `screenshots` folder and use the correct filename in the image link below.
 
-Through this task, I learned how to:
+![SWYNEX Interactive Power BI Dashboard](screenshots/dashboard_screenshot.png)
 
-- Build an interactive dashboard in Power BI
-- Create and format KPI cards
-- Build charts to communicate business insights
-- Add filters and interactive selections
-- Analyze revenue and sales performance
-- Present data in a clear and professional way
+### Power BI File
 
-## Dashboard Screenshot
+The Power BI report is available in the repository as:
 
-![SWYNEX Interactive Dashboard](dashboard_screenshot.png)
+`SWYNEX_Interactive_Dashboard.pbix`
 
-## Project Files
+Open the file in Microsoft Power BI Desktop to interact with the report, provided the file has been uploaded to the repository.
 
-- `SWYNEX_Interactive_Dashboard.pbix` - Power BI dashboard
-- `dashboard_screenshot.png` - Dashboard screenshot
+## 10. Key Business Insights
+
+The dashboard is designed to help answer important business questions:
+
+1. **Revenue performance:** How does revenue change over time?
+2. **Product performance:** Which products contribute the most revenue?
+3. **Geographical performance:** Which countries generate the highest revenue?
+4. **Order activity:** How do order volumes change across the selected periods?
+5. **Customer coverage:** How many customers are represented in the transaction data?
+
+The actual top-performing products, countries, revenue figures, and time periods should be documented from the dashboard results. These findings can help businesses prioritize product performance reviews, explore geographical opportunities, and investigate changes in sales trends.
+
+## 11. Project Structure
+
+```text
+SWYNEX-data-cleaning-preparation/
+├── raw_data/
+│   └── Online Retail.xlsx
+├── cleaned_data/
+│   └── cleaned_online_retail.csv
+├── python/
+│   └── data_cleaning.py
+├── screenshots/
+│   └── dashboard_screenshot.png
+├── SWYNEX_Interactive_Dashboard.pbix
+└── README.md
+```
+
+The structure above describes the intended project organization. File names and locations should match the actual contents of the repository.
+
+## 12. Key Learnings
+
+Through this project, I gained practical experience in:
+
+- Assessing data quality
+- Cleaning and transforming data with Python and Pandas
+- Handling missing values and duplicate records
+- Standardizing data types
+- Creating calculated columns for analysis
+- Developing interactive Power BI dashboards
+- Communicating analytical findings through visualizations
+- Managing project files and documentation using GitHub
+
+## 13. Conclusion
+
+This project demonstrates an end-to-end data analytics workflow, from raw data preparation to interactive business reporting.
+
+The cleaning process improved the consistency and usability of the Online Retail dataset, while the Power BI dashboard provides a visual approach to exploring revenue, orders, products, customers, and geographical performance.
+
+The project strengthened my practical skills in Python, data preparation, Power BI, data visualization, and business-oriented analysis.
+
+## 14. Acknowledgment
+
+This project was completed as part of my SWYNEX internship. The Online Retail dataset is sourced from the UCI Machine Learning Repository.
+
+**Technologies:** Python | Pandas | Excel | Power BI | GitHub
+
+**Project Repository:**  
+https://github.com/gunapriyasadhu02/SWYNEX-data-cleaning-preparation
